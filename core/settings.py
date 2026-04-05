@@ -7,10 +7,9 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- SECURITY SETTINGS ---
-# Use environment variables for production; default to safe values for development
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-local-development')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,render.com').split(',')
+DEBUG = False 
+ALLOWED_HOSTS = ['finance-backend-i53x.onrender.com', 'localhost', '127.0.0.1', '*']
 
 # --- APPLICATION DEFINITION ---
 INSTALLED_APPS = [
@@ -83,7 +82,6 @@ SIMPLE_JWT = {'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60)}
 # --- STATIC FILES ---
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# This tells Whitenoise to compress and cache your static files efficiently
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # --- LANGUAGE & TIME ---
@@ -91,11 +89,3 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-
-# --- PASSWORD VALIDATORS ---
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]

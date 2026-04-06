@@ -27,28 +27,25 @@ The API is live at: `https://finance-backend-i53x.onrender.com/`
    git clone https://github.com/mastewalshiferaw/finance-backend
    cd finance-backend
    pip install -r requirements.txt
-
-⚙️ Environment Variables
-
+Environment Variables:
 Set the following variables (in .env or your system environment):
-
-SECRET_KEY=your_django_secret_key
-DATABASE_URL=your_database_connection_string
-ADMIN_USER=admin_username
-ADMIN_EMAIL=admin_email
-ADMIN_PASS=admin_password
-
-🚀 Run the Project
+SECRET_KEY: Your Django secret key.
+DATABASE_URL: Connection string for PostgreSQL/SQLite.
+ADMIN_USER: Username for the initial admin account.
+ADMIN_EMAIL: Email for the initial admin account.
+ADMIN_PASS: Password for the initial admin account.
+Run the Project:
+code
+Bash
 python manage.py migrate
 python manage.py setup_admin
 python manage.py runserver
-
-🔧 Technical Highlights
-Security: Implemented custom permission classes using Django REST Framework to enforce role-based access control.
-Precision: Used DecimalField for financial data to avoid floating-point inaccuracies.
-Performance: Leveraged database-level aggregations (Sum, Count) for scalable dashboard metrics.
-Automation: Created a custom management command (setup_admin) for secure, environment-based admin initialization.
-Stateless Authentication: Used JWT via djangorestframework-simplejwt for secure and scalable authentication.
+Technical Highlights
+Security: Implemented custom DRF Permission Classes to enforce role-based access.
+Precision: Used DecimalField for currency handling to prevent floating-point errors.
+Performance: Used database-level aggregation (Sum/Count) for dashboard metrics to ensure scalability.
+Automation: Created a custom management command (setup_admin) for secure, environment-based admin initialization during deployment.
+Stateless Authentication: Used JSON Web Tokens (JWT) via simplejwt for secure, scalable authentication.
 💡 Notes
 Ensure environment variables are properly configured before running the server.
-The setup_admin command automatically creates an admin user during deployment.
+The setup_admin command automatically creates an admin user during deployment based on your environment variables.
